@@ -14,7 +14,7 @@ char *LibHTTPC_dumpResponse(struct LibHTTPC_Response *response, char *buf, size_
     if (!response->status)
         response->status = LibHTTPC_Status_OK;
     if (!response->phrase)
-        response->phrase = LibHTTPC_dumpStatus(LibHTTPC_Status_OK);
+        response->phrase = LibHTTPC_dumpStatus(response->status);
 
     snprintf(status, sizeof(status), "%d", response->status);
 
