@@ -255,6 +255,12 @@ struct LibHTTPC_Request *LibHTTPC_loadRequest(struct LibHTTPC_Request *request_b
  * Construct C-String with resopnse that can be sent to client from
  * LibHTTPC_Response struct
  * @param[in]  response Pointer to response
+ *
+ *                      if (response.version == NULL) then it will be set to "HTTP/1.1"
+ *
+ *                      if (response.status == 0) then it will be set to LibHTTPC_Status_OK
+ *
+ *                      if (response.phrase == NULL) then it will be set to LibHTTPC_dumpStatus(response.status)
  * @param[out] buf      Pointer to buffer where to save formatted response
  * @param      buf_len  Size of buf
  */
