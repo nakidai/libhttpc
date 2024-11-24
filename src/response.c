@@ -1,18 +1,27 @@
 #include "libhttpc.h"
 
 #include <stddef.h>
+#include <stdio.h>
 #include <string.h>
 
 
 char *LibHTTPC_dumpResponse(struct LibHTTPC_Response *response, char *buf, size_t buf_len)
 {
-    if (!response->version || !response->status || !response->phrase)
-        return NULL;
+    char status[10];
+
+    if (!response->version)
+        response->version = "HTTP/1.1";
+    if (!response->status)
+        response->status = 200;
+    if (!response->phrase)
+        response->phrase = LibHTTPC_dumpStatus(LibHTTPC_Status_OK);
+
+    snprintf(status, sizeof(status), "%d", response->status);
 
 #define append(X) strncat(buf, (X), buf_len - strlen(buf))
     append(response->version);
     append("");
-    append(response->status);
+    append(status);
     append(" ");
     append(response->phrase);
     append("\r\n");
