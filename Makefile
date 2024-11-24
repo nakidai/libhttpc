@@ -1,3 +1,5 @@
+include config.mk
+
 OBJS += obj/header.o
 OBJS += obj/libhttpc.o
 OBJS += obj/malloc.o
@@ -23,6 +25,16 @@ libhttpc.so:
 
 libhttpc.a:
 	ar rcs $@ $^
+
+install: all
+	install -d $(DESTDIR)/lib
+	install -m644 libhttpc.a $(DESTDIR)/lib
+	install -m755 libhttpc.so $(DESTDIR)/lib
+	install -m644 include/libhttpc.h $(DESTDIR)/include
+
+uninstall:
+	$(RM) $(DESTDIR)/lib/libhttpc.{a,so}
+	$(RM) $(DESTDIR)/include/libhttpc.h
 
 clean:
 	rm -f ${OBJS} libhttpc.a libhttpc.so

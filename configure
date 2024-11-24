@@ -1,0 +1,36 @@
+#!/bin/sh
+
+usage()
+{
+    echo "Use environment variables to pass values:
+    CC         - compiler (default: cc)
+    CFLAGS     - flags for compiler
+    LDFLAGS    - flags for linker
+    DESTDIR    - path to make install (default: /usr/local)"
+    exit 1
+}
+
+while test $# -gt 0; do
+    case "$1" in
+        -h) usage
+            ;;
+        --help) usage
+            ;;
+    esac
+    shift
+done
+
+CC=${CC:-cc}
+CFLAGS=${CFLAGS:-}
+LDFLAGS=${LDFLAGS:-}
+DESTDIR=${DESTDIR:-/usr/local}
+
+echo "Configuration:
+    Compiler: $CC
+    CFLAGS: $CFLAGS
+    LDFLAGS: $LDFLAGS
+    DESTDIR: $DESTDIR"
+
+echo "
+DESTDIR=$DESTDIR
+" > config.mk
