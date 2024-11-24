@@ -168,7 +168,7 @@ struct LibHTTPC_Request
  */
 struct LibHTTPC_Response
 {
-    const char    *buf;                       /**< Pointer to char *response */
+    char          *buf;                       /**< Pointer to char *response */
     const char    *version, *status, *phrase; /**< Response line */
     const char   **header_names;              /**< \ Header parallel array */
     const char   **header_values;             /**< / Header parallel array */
