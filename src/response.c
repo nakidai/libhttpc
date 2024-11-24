@@ -27,9 +27,9 @@ char *LibHTTPC_dumpResponse(struct LibHTTPC_Response *response, char *buf, size_
     append("\r\n");
     for (size_t i = 0; i < response->header_count; ++i)
     {
-        append(response->header_names[i]);
+        append(response->headers[i].name);
         append(": ");
-        append(response->header_values[i]);
+        append(response->headers[i].value);
         append("\r\n");
     }
     append("\r\n");

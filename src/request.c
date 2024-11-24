@@ -53,23 +53,17 @@ struct LibHTTPC_Request *LibHTTPC_loadRequest(struct LibHTTPC_Request *request_b
         if (selfmalloc)
         {
             ++request_buf->header_count;
-
-            if (!request_buf->header_names)
-                request_buf->header_names = LibHTTPC_malloc(sizeof(char *));
+            if (!request_buf->headers)
+                request_buf->headers = LibHTTPC_malloc(sizeof(struct LibHTTPC_Header));
             else
-                request_buf->header_names = LibHTTPC_realloc(request_buf->header_names, sizeof(char *));
-
-            if (!request_buf->header_values)
-                request_buf->header_values = LibHTTPC_malloc(sizeof(char *));
-            else
-                request_buf->header_values = LibHTTPC_realloc(request_buf->header_values, sizeof(char *));
+                request_buf->headers = LibHTTPC_realloc(request_buf->headers, sizeof(struct LibHTTPC_Header));
         }
         if (i < request_buf->header_count)
         {
-            request_buf->header_names[i] = next;
+            request_buf->headers[i].name = next;
             next = strchr(next, ':');
             *next++ = '\0';
-            request_buf->header_values[i] = next;
+            request_buf->headers[i].value = next;
         }
     }
     request_buf->body = next + 2;
@@ -80,10 +74,7 @@ struct LibHTTPC_Request *LibHTTPC_loadRequest(struct LibHTTPC_Request *request_b
 void LibHTTPC_Request_(struct LibHTTPC_Request *request)
 {
     if (request->header_selfalloc)
-    {
-        free(request->header_names);
-        free(request->header_values);
-    }
+        free(request->headers);
     if (request->selfalloc)
         free(request);
 }

@@ -121,7 +121,7 @@ static int strieq(const char *a, const char *b)
         CASE(LAST_MODIFIED);        \
     } while(0)
 
-enum LibHTTPC_Header LibHTTPC_loadHeader(const char *header)
+enum LibHTTPC_HeaderType LibHTTPC_loadHeader(const char *header)
 {
 #define CASE(X) if (!strieq((S_##X), header)) return HEADER(X)
     CHECK();
@@ -129,7 +129,7 @@ enum LibHTTPC_Header LibHTTPC_loadHeader(const char *header)
     return HEADER(EXTENSION_HEADER);
 }
 
-const char *LibHTTPC_dumpHeader(enum LibHTTPC_Header header)
+const char *LibHTTPC_dumpHeader(enum LibHTTPC_HeaderType header)
 {
     switch (header)
     {

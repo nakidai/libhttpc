@@ -20,7 +20,7 @@ typedef void *LibHTTPC_Realloc(void *, size_t);
 /**
  * Enum that contains all headers that are supported by the HTTP/1.1
  */
-enum LibHTTPC_Header
+enum LibHTTPC_HeaderType
 {
     /* General headers */
     LibHTTPC_Header_CACHE_CONTROL,
@@ -146,20 +146,27 @@ enum LibHTTPC_Status
     LibHTTPC_Status_HTTP_VER_NOT_SUPPORTED = 505,
 };
 
+struct LibHTTPC_Header
+{
+    const char *name;
+    const char *value;
+};
+
 /**
  * Struct that contains parsed request.
  * @see LibHTTPC_loadRequest
  */
 struct LibHTTPC_Request
 {
-    char    *buf;                    /**< Pointer to char *request */
-    char    *method, *uri, *version; /**< Request line */
-    char   **header_names;           /**< \ Header parallel array  */
-    char   **header_values;          /**< / Header parallel array  */
-    char    *body;                   /**< Pointer to body */
-    size_t   header_count;           /**< Length of header array */
-    int      selfalloc;              /**< Marker if request was allocated by the library */
-    int      header_selfalloc;       /**< Marker if header array was allocated by the library */
+    char                   *buf;                /**< Pointer to char *request */
+    char                   *method;             /**< Request method */
+    char                   *uri;                /**< Request URI */
+    char                   *version;            /**< HTTP version */
+    struct LibHTTPC_Header *headers;            /**< Header array */
+    char                   *body;               /**< Pointer to body */
+    size_t                  header_count;       /**< Length of header array */
+    int                     selfalloc;          /**< Marker if request was allocated by the library */
+    int                     header_selfalloc;   /**< Marker if header array was allocated by the library */
 };
 
 /**
@@ -172,8 +179,7 @@ struct LibHTTPC_Response
     const char             *version;                    /**< HTTP version */
     enum LibHTTPC_Status    status;                     /**< Status code */
     const char             *phrase;                     /**< Phrase describing status code */
-    const char            **header_names;               /**< \ Header parallel array */
-    const char            **header_values;              /**< / Header parallel array */
+    struct LibHTTPC_Header *headers;                    /**< Header array */
     const char             *body;                       /**< Pointer to body */
     size_t                  header_count;               /**< Length of header array */
 };
@@ -197,7 +203,7 @@ void LibHTTPC(LibHTTPC_Malloc *malloc, LibHTTPC_Realloc *realloc);
 /**
  * Parse header name
  */
-enum LibHTTPC_Header LibHTTPC_loadHeader(const char *header);
+enum LibHTTPC_HeaderType LibHTTPC_loadHeader(const char *header);
 /**
  * Parse method name
  */
@@ -206,7 +212,7 @@ enum LibHTTPC_Method LibHTTPC_loadMethod(const char *method);
 /**
  * Get name of the header by enum LibHTTPC_Header
  */
-const char *LibHTTPC_dumpHeader(enum LibHTTPC_Header header);
+const char *LibHTTPC_dumpHeader(enum LibHTTPC_HeaderType header);
 /**
  * Get name of the header by enum LibHTTPC_Method
  */
