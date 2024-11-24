@@ -16,6 +16,11 @@ typedef void *LibHTTPC_Malloc(size_t);
  * @see libhttpc_realloc
  */
 typedef void *LibHTTPC_Realloc(void *, size_t);
+/**
+ * Just typedef to make libhttpc_free definition more readable
+ * @see libhttpc_realloc
+ */
+typedef void LibHTTPC_Free(void *);
 
 /**
  * Enum that contains all headers that are supported by the HTTP/1.1
@@ -192,13 +197,17 @@ extern LibHTTPC_Malloc *LibHTTPC_malloc;
  * Realloc used by the library
  */
 extern LibHTTPC_Realloc *LibHTTPC_realloc;
+/**
+ * Free used by the library
+ */
+extern LibHTTPC_Free *LibHTTPC_free;
 
 /**
  * Setup LibHTTPC_malloc and LibHTTPC_realloc
  * @param malloc Malloc implementation
  * @param realloc Realloc implementation
  */
-void LibHTTPC(LibHTTPC_Malloc *malloc, LibHTTPC_Realloc *realloc);
+void LibHTTPC(LibHTTPC_Malloc *malloc, LibHTTPC_Realloc *realloc, LibHTTPC_Free *free);
 
 /**
  * Parse header name

@@ -74,7 +74,7 @@ struct LibHTTPC_Request *LibHTTPC_loadRequest(struct LibHTTPC_Request *request_b
 void LibHTTPC_Request_(struct LibHTTPC_Request *request)
 {
     if (request->header_selfalloc)
-        free(request->headers);
+        LibHTTPC_free(request->headers);
     if (request->selfalloc)
-        free(request);
+        LibHTTPC_free(request);
 }
