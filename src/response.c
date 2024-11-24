@@ -12,7 +12,7 @@ char *LibHTTPC_dumpResponse(struct LibHTTPC_Response *response, char *buf, size_
     if (!response->version)
         response->version = "HTTP/1.1";
     if (!response->status)
-        response->status = 200;
+        response->status = LibHTTPC_Status_OK;
     if (!response->phrase)
         response->phrase = LibHTTPC_dumpStatus(LibHTTPC_Status_OK);
 
