@@ -1,0 +1,9 @@
+libhttpc
+<======>
+HTTP Library (Cute :3)
+
+This library provides some QoL functions for parsing requests and constructing
+responses.
+
+Notice that libhttpc doesn't do any validation, validate data yourself or use
+reverse proxy for this task.
