@@ -44,6 +44,7 @@ struct LibHTTPC_Request *LibHTTPC_loadRequest(struct LibHTTPC_Request *request_b
 
     for (size_t i = 0; (next = strstr(next, "\r\n")); ++next, ++i)
     {
+        *next = '\0';
         next += 2;
 
         if (strstr(next, "\r\n") == next)
