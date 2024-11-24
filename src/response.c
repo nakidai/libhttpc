@@ -20,7 +20,7 @@ char *LibHTTPC_dumpResponse(struct LibHTTPC_Response *response, char *buf, size_
 
 #define append(X) strncat(buf, (X), buf_len - strlen(buf))
     append(response->version);
-    append("");
+    append(" ");
     append(status);
     append(" ");
     append(response->phrase);
