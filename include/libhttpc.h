@@ -168,12 +168,12 @@ struct LibHTTPC_Request
  */
 struct LibHTTPC_Response
 {
-    char    *buf;                       /**< Pointer to char *response */
-    char    *version, *status, *phrase; /**< Response line */
-    char   **header_names;              /**< \ Header parallel array */
-    char   **header_values;             /**< / Header parallel array */
-    char    *body;                      /**< Pointer to body */
-    size_t   header_count;              /**< Length of header array */
+    const char    *buf;                       /**< Pointer to char *response */
+    const char    *version, *status, *phrase; /**< Response line */
+    const char   **header_names;              /**< \ Header parallel array */
+    const char   **header_values;             /**< / Header parallel array */
+    const char    *body;                      /**< Pointer to body */
+    size_t         header_count;              /**< Length of header array */
 };
 
 /**
