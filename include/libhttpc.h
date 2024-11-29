@@ -269,8 +269,9 @@ char *LibHTTPC_dumpResponse(struct LibHTTPC_Response *response, char *buf, size_
 /**
  * Destructor for LibHTTPC_Request
  * @param request Request to free
+ * @return -1 if LibHTTPC_free is not set, errno otherwise
  */
-void LibHTTPC_Request_(struct LibHTTPC_Request *request);
+int LibHTTPC_Request_(struct LibHTTPC_Request *request);
 
 /**
  * Not implemented yet
