@@ -1,0 +1,1 @@
+#define LibHTTPC_SOCK

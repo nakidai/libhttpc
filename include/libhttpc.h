@@ -1,6 +1,8 @@
 #ifndef __LIBHTTPC_H__
 #define __LIBHTTPC_H__
 
+#include "config.h"
+
 #include <stdlib.h>
 #include <stddef.h>
 #include <stdint.h>
@@ -273,6 +275,7 @@ char *LibHTTPC_dumpResponse(struct LibHTTPC_Response *response, char *buf, size_
  */
 int LibHTTPC_Request_(struct LibHTTPC_Request *request);
 
+#ifdef LibHTTPC_SOCK
 /**
  * Not implemented yet
  */
@@ -286,5 +289,6 @@ struct LibHTTPC_Request *LibHTTPC_readRequest(
  * Not implemented yet
  */
 int LibHTTPC_writeResponse(int sockfd, struct LibHTTPC_Response *response);
+#endif
 
 #endif /* __LIBHTTPC_H__ */

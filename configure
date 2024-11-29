@@ -6,7 +6,8 @@ usage()
     CC         - compiler (default: cc)
     CFLAGS     - flags for compiler
     LDFLAGS    - flags for linker
-    DESTDIR    - path to make install (default: /usr/local)"
+    DESTDIR    - path to make install (default: /usr/local)
+    NOSOCK     - set to cut part of libhttpc that works with sockets"
     exit 1
 }
 
@@ -29,8 +30,14 @@ echo "Configuration:
     Compiler: $CC
     CFLAGS: $CFLAGS
     LDFLAGS: $LDFLAGS
-    DESTDIR: $DESTDIR"
+    DESTDIR: $DESTDIR
+    NOSOCK: ${NOSOCK:-not set}"
 
 echo "
 DESTDIR=$DESTDIR
 " > config.mk
+
+echo > include/config.h
+if [ -z "$NOSOCK" ]; then
+    echo "#define LibHTTPC_SOCK" > include/config.h
+fi

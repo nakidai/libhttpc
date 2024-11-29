@@ -27,14 +27,14 @@ libhttpc.a:
 	ar rcs $@ $^
 
 install: all
-	install -d $(DESTDIR)/lib
+	install -d $(DESTDIR)/lib ${DESTDIR}/include/libhttpc
 	install -m644 libhttpc.a $(DESTDIR)/lib
 	install -m755 libhttpc.so $(DESTDIR)/lib
-	install -m644 include/libhttpc.h $(DESTDIR)/include
+	install -m644 include/{config,libhttpc}.h $(DESTDIR)/include
 
 uninstall:
 	$(RM) $(DESTDIR)/lib/libhttpc.{a,so}
-	$(RM) $(DESTDIR)/include/libhttpc.h
+	$(RM) $(DESTDIR)/include/libhttpc/{config,libhttpc}.h
 
 clean:
 	rm -f ${OBJS} libhttpc.a libhttpc.so

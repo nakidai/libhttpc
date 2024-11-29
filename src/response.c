@@ -1,3 +1,4 @@
+#include "config.h"
 #include "libhttpc.h"
 
 #include <stddef.h>
@@ -49,6 +50,7 @@ char *LibHTTPC_dumpResponse(struct LibHTTPC_Response *response, char *buf, size_
     return NULL;
 }
 
+#ifdef LibHTTPC_SOCK
 int LibHTTPC_writeResponse(int sockfd, struct LibHTTPC_Response *response)
 {
     char status[10];
@@ -73,3 +75,4 @@ int LibHTTPC_writeResponse(int sockfd, struct LibHTTPC_Response *response)
 
     return 0;
 }
+#endif
