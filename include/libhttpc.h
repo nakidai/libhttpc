@@ -286,7 +286,10 @@ struct LibHTTPC_Request *LibHTTPC_readRequest(
 );
 
 /**
- * Not implemented yet
+ * Send response to sockfd
+ * @param sockfd    Where to send response
+ * @param response  Response to send
+ * @return 0 on success, 1 if send functon failed
  */
 int LibHTTPC_writeResponse(int sockfd, struct LibHTTPC_Response *response);
 #endif
