@@ -37,7 +37,12 @@ echo "
 DESTDIR=$DESTDIR
 " > config.mk
 
-echo > include/config.h
+echo "#ifndef __LIBHTTPC_CONFIG_H__
+#define __LIBHTTPC_CONFIG_H__
+
+" > include/config.h
 if [ -z "$NOSOCK" ]; then
-    echo "#define LibHTTPC_SOCK" > include/config.h
+    echo "#define LibHTTPC_SOCK" >> include/config.h
 fi
+echo "
+#endif" >> include/config.h
