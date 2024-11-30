@@ -59,10 +59,8 @@
 
 static int strieq(const char *a, const char *b)
 {
-    while (*a)
-        if (tolower(*a) != tolower(*b))
-            return 0;
-    return 1;
+    while (*a && tolower(*a) == tolower(*b)) ++a, ++b;
+    return tolower(*a) == tolower(*b);
 }
 
 #define CHECK()                     \
