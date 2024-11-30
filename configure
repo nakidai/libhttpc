@@ -34,6 +34,8 @@ echo "Configuration:
     NOSOCK: ${NOSOCK:-not set}"
 
 echo "
+CFLAGS=$CFLAGS
+LDFLAGS=$LDFLAGS
 DESTDIR=$DESTDIR
 " > config.mk
 
