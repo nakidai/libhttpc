@@ -35,18 +35,26 @@ struct LibHTTPC_Request *LibHTTPC_loadRequest(struct LibHTTPC_Request *request_b
     request_buf->method = request_buf->buf = buf;
 
     next = strchr(request_buf->method, ' ');
+    if (!next)
+        return NULL;
     *next = '\0';
     request_buf->uri = next + 1;
 
     next = strchr(request_buf->uri, ' ');
+    if (!next)
+        return NULL;
     *next = '\0';
     request_buf->version = next + 1;
 
     next = strstr(request_buf->version, "\r\n");
+    if (!next)
+        return NULL;
     *next++ = '\0';
 
     for (size_t i = 0; (next = strstr(next, "\r\n")); ++next, ++i)
     {
+        if (!next)
+            return NULL;
         *next = '\0';
         next += 2;
 
@@ -67,6 +75,8 @@ struct LibHTTPC_Request *LibHTTPC_loadRequest(struct LibHTTPC_Request *request_b
         {
             request_buf->headers[i].name = next;
             next = strchr(next, ':');
+            if (!next)
+                return NULL;
             *next++ = '\0';
             request_buf->headers[i].value = next;
         }
