@@ -26,6 +26,9 @@ libhttpc.so:
 libhttpc.a:
 	ar rcs $@ $^
 
+README:
+	mandoc -T ascii $@.7 | col -b > $@
+
 install: all
 	install -d $(DESTDIR)/lib ${DESTDIR}/include/libhttpc ${DESTDIR}/share/man/man3
 	install -m644 libhttpc.a $(DESTDIR)/lib

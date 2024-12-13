@@ -1,0 +1,30 @@
+LIBHTTPC(7)	       Miscellaneous Information Manual		   LIBHTTPC(7)
+
+NAME
+     libhttpc - HTTP Library (Cute :3)
+
+DESCRIPTION
+     This library provides some QoL function for parsing requests and
+     constructing responses.  It's written for making HTTP servers.
+
+     If you want to check the documentation, you may want to check
+     include/libhttpc.h file or libhttpc(3)
+
+EXAMPLES
+     As an example, I can tell you the way how personally I use this library:
+
+     o	 Receive request from the user
+
+     o	 Pass the request to the libhttpc_loadrequest(3) function
+
+     o	 Handle the request
+
+     o	 Send request back using libhttpc_dumpresponse(3)
+
+SEE ALSO
+     libhttpc(3)
+
+AUTHORS
+     Nakidai Perumenei <nakidai@disroot.org>
+
+Linux 6.12.1-arch1-1	       December 13, 2024	  Linux 6.12.1-arch1-1
