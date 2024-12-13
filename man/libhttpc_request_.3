@@ -1,0 +1,44 @@
+.Dd December 13, 2024
+.Dt LIBHTTPC_REQUEST_ 3
+.Os
+.
+.Sh NAME
+.Nm LibHTTPC_Request_
+.Nd
+.Xr libhttpc_request 3
+destructor
+.
+.Sh SYNOPSIS
+.In libhttpc/libhttpc.h
+.Fc
+.Ft int
+.Fo LibHTTPC_Request_
+.Fa "struct LibHTTPC_Request *request"
+.Fc
+.
+.Sh DESCRIPTION
+.Nm
+is a destructor of
+.Xr libhttpc_request 3 .
+It frees array
+if header_selfalloc is set,
+and then frees structure
+if selfalloc is set.
+.
+.Sh RETURN VALUES
+.Nm
+returns either
+-1
+if user hadn't set
+.Xr libhttpc-alloc 3
+or
+.Xr errno 3 .
+.
+.Sh SEE ALSO
+.Xr libhttpc 3 ,
+.Xr libhttpc-alloc 3 ,
+.Xr libhttpc_header 3 ,
+.Xr libhttpc_request 3
+.
+.Sh AUTHORS
+.An Nakidai Perumenei Aq Mt nakidai@disroot.org

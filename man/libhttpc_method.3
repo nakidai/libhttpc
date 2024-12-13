@@ -4,14 +4,7 @@
 .
 .Sh NAME
 .Nm LibHTTPC_Method
-HTTP method
-.
-.Sh SYNOPSIS
-.In libhttpc/libhttpc.h
-.Ft "const char *"
-.Fn LibHTTPC_dumpMethod "enum LibHTTPC_Method method"
-.Ft "enum LibHTTPC_Method"
-.Fn LibHTTPC_loadMethod "const char *method"
+.Nd HTTP method
 .
 .Sh DESCRIPTION
 HTTP/1.1
@@ -19,11 +12,9 @@ comes with
 some methods.
 .Xr libhttpc 3
 provides
-QOL functions
-for converting them
-between
-user-readable strings
-and machine-readable enum.
+enum
+and QoL functions
+for using them.
 .Ss Methods
 These are methods
 that are supported
@@ -53,7 +44,9 @@ there's
 for user-defined methods.
 .
 .Sh SEE ALSO
-.Xr libhttpc 3
+.Xr libhttpc 3 ,
+.Xr libhttpc_dumpmethod 3 ,
+.Xr libhttpc_loadmethod 3
 .
 .Sh AUTHORS
 .An Nakidai Perumenei Aq Mt nakidai@disroot.org

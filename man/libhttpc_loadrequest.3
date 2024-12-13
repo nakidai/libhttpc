@@ -1,0 +1,90 @@
+.Dd December 13, 2024
+.Dt LIBHTTPC_LOADREQUEST 3
+.Os
+.
+.Sh NAME
+.Nm LibHTTPC_loadRequest
+.Nd parse HTTP request
+.
+.Sh SYNOPSIS
+.In libhttpc/libhttpc.h
+.Ft "struct LibHTTPC_Request *"
+.Fo LibHTTPC_loadRequest
+.Fa "struct LibHTTPC_Request *request_buf"
+.Fa "char *buf"
+.Fc
+.
+.Sh DESCRIPTION
+.Nm
+parses
+.Ql buf
+and fills a
+.Ql struct LibHTTPC_Request .
+If
+.Ql request_buf
+argument
+is
+.Ql NULL ,
+then functon will
+allocate buffer
+itself.
+.
+.Sh RETURN VALUES
+.Nm
+returns pointer to
+.Ql request_buf
+on success,
+or
+.Ql NULL
+on error.
+.
+.Pp
+If
+.Nm
+returned
+.Ql NULL ,
+it could mean
+either:
+.Bl -bullet
+.It
+if
+.Xr errno 3
+is 0
+(Success),
+it means
+that user
+hadn't set
+.Xr libhttpc-alloc 3 .
+.It
+If
+.Xr errno 3
+is not 0,
+it means
+that some allocation function
+has failed.
+Read
+.Ql ERRORS
+section of
+.Xr malloc 3
+for more information.
+.El
+.
+.Sh SEE ALSO
+.Xr libhttpc 3 ,
+.Xr libhttpc-alloc 3 ,
+.Xr libhttpc_header 3 ,
+.Xr libhttpc_request 3
+.
+.Sh AUTHORS
+.An Nakidai Perumenei Aq Mt nakidai@disroot.org
+.
+.Sh CAVEATS
+.Nm
+function will
+destroy the buffer
+while working.
+It sets
+0 char
+on the end
+of every string in
+.Ql struct LibHTTPC_Request .

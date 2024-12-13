@@ -1,0 +1,89 @@
+.Dd December 13, 2024
+.Dt LIBHTTPC_DUMPRESPONSE 3
+.Os
+.
+.Sh NAME
+.Nm LibHTTPC_dumpResponse ,
+.Nm LibHTTPC_writeResponse
+.Nd save
+.Xr libhttpc_response 3
+.
+.Sh SYNOPSIS
+.In libhttpc/libhttpc.h
+.Ft "char *"
+.Fo LibHTTPC_dumpResponse
+.Fa "struct LibHTTPC_Response *response"
+.Fa "char *buf"
+.Fa "size_t buf_len"
+.Fc
+.Ft int
+.Fo "LibHTTPC_writeResponse"
+.Fa "int sockfd"
+.Fa "struct LibHTTPC_Response *response"
+.Fc
+.
+.Sh DESCRIPTION
+.Nm
+combines
+contents of
+.Ql response
+in the
+.Ql buf .
+.
+.Pp
+.Nm LibHTTPC_writeResponse
+function writes
+.Ql response
+to the
+.Ql sockfd .
+.
+.Pp
+Both functions can
+autocomplete responses.
+If
+.Ql version
+is
+.Ql NULL ,
+then it will
+be set to
+.Ql "HTTP/1.1" .
+If
+.Ql status
+is 0,
+then it will
+be set to
+200.
+If
+.Ql phrase
+is
+.Ql NULL ,
+then it will
+be set to
+.Ql LibHTTPC_dumpStatus(status) .
+.
+.Sh RETURN VALUES
+.Nm LibHTTPC_writeResponse
+will return 1
+if cannot send
+response.
+Read
+.Ql ERRORS
+section of
+.Xr send 2
+for more information.
+.
+.Sh SEE ALSO
+.Xr libhttpc 3 ,
+.Xr libhttpc_header 3 ,
+.Xr libhttpc_status 3 ,
+.Xr libhttpc_response 3
+.
+.Sh AUTHORS
+.An Nakidai Perumenei Aq Mt nakidai@disroot.org
+.
+.Sh CAVEATS
+.Nm
+may edit fields of
+.Ql response
+that are set to
+0

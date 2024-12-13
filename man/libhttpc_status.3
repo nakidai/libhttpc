@@ -5,11 +5,6 @@
 .Nm LibHTTPC_Status
 .Nd HTTP status
 .
-.Sh SYNOPSIS
-.In libhttpc/libhttpc.h
-.Ft "const char *"
-.Fn LibHTTPC_dumpStatus "enum LibHTTPC_Status status"
-.
 .Sh DESCRIPTION
 HTTP/1.1
 comes with
@@ -22,7 +17,13 @@ usually used
 status strings
 by code.
 .
-.Sh STATUSES
+.Pp
+These're
+status codes
+presented
+by the
+.Xr libhttpc 3 :
+.
 .Ss 1xx: Informational
 .Bl -tag
 .It Dv LibHTTPC_Status_CONTINUE = 100

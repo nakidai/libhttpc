@@ -1,0 +1,32 @@
+.Dd December 13, 2024
+.Dt LIBHTTPC_LOADMETHOD 3
+.Os
+.
+.Sh NAME
+.Nm LibHTTPC_loadMethod
+.Nd convert
+string to
+.Xr libhttpc_method 3
+.
+.Sh SYNOPSIS
+.In libhttpc/libhttpc.h
+.Ft "enum LibHTTPC_Method"
+.Fn LibHTTPC_loadMethod "const char *header"
+.
+.Sh DESCRIPTION
+.Nm
+converts
+.Ql const char * .
+to
+.Ql enum LibHTTPC_Method
+To view
+all available methods,
+check
+.Xr libhttpc_method 3 .
+.
+.Sh SEE ALSO
+.Xr libhttpc 3 ,
+.Xr libhttpc_method 3
+.
+.Sh AUTHORS
+.An Nakidai Perumenei Aq Mt nakidai@disroot.org

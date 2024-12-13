@@ -4,14 +4,12 @@
 .
 .Sh NAME
 .Nm LibHTTPC_Request
-.Nd way to store HTTP requests
+.Nd how
+.Xr libhttpc 3
+stores HTTP requests
 .
 .Sh SYNOPSIS
 .In libhttpc/libhttpc.h
-.Ft "struct LibHTTPC_Request *"
-.Fo LibHTTPC_loadRequest
-.Fa "struct LibHTTPC_Request *request_buf"
-.Fa "char *buf"
 .Fc
 .Ft int
 .Fo LibHTTPC_Request_
@@ -137,7 +135,9 @@ you should check
 .Sh SEE ALSO
 .Xr libhttpc 3 ,
 .Xr libhttpc-alloc 3 ,
-.Xr libhttpc_header 3
+.Xr libhttpc_header 3 ,
+.Xr libhttpc_loadrequest 3 ,
+.Xr libhttpc_request_ 3
 .
 .Sh AUTHORS
 .An Nakidai Perumenei Aq Mt nakidai@disroot.org
