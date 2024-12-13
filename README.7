@@ -1,0 +1,54 @@
+.Dd December 13, 2024
+.Dt LIBHTTPC 7
+.Os
+.
+.Sh NAME
+.Nm libhttpc
+.Nd HTTP Library (Cute :3)
+.
+.Sh DESCRIPTION
+This library provides
+some QoL function
+for parsing requests
+and constructing responses.
+It's written
+for making
+HTTP servers.
+.
+.Pp
+If you want to
+check the documentation,
+you may want to
+check
+.Pa include/libhttpc.h
+file
+or
+.Xr libhttpc 3
+.
+.Sh EXAMPLES
+As an example,
+I can
+tell you
+the way
+how personally I
+use this library:
+.Bl -bullet
+.It
+Receive request from the user
+.It
+Pass the request to the
+.Xr libhttpc_loadrequest 3
+function
+.It
+Handle the request
+.It
+Send request back
+using
+.Xr libhttpc_dumpresponse 3
+.El
+.
+.Sh SEE ALSO
+.Xr libhttpc 3
+.
+.Sh AUTHORS
+.An Nakidai Perumenei Aq Mt nakidai@disroot.org
