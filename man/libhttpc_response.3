@@ -1,0 +1,123 @@
+.Dd December 13, 2024
+.Dt LIBHTTPC_RESPONSE 3
+.Os
+.
+.Sh NAME
+.Nm LibHTTPC_Response
+.Nd way to store HTTP responses
+.
+.Sh SYNOPSIS
+.In libhttpc/libhttpc.h
+.Ft "char *"
+.Fo LibHTTPC_dumpResponse
+.Fa "struct LibHTTPC_Response *response"
+.Fa "char *buf"
+.Fa "size_t buf_len"
+.Fc
+.Ft int
+.Fo "LibHTTPC_writeResponse"
+.Fa "int sockfd"
+.Fa "struct LibHTTPC_Response *response"
+.Fc
+.
+.Sh DESCRIPTION
+.Xr libhttpc 3
+stores responses
+as follows:
+.Bd -literal -offset indent
+struct LibHTTPC_Response
+{
+    char                   *buf;
+    const char             *version;
+    enum LibHTTPC_Status    status;
+    const char             *phrase;
+    struct LibHTTPC_Header *headers;
+    const char             *body;
+    size_t                  header_count;
+};
+.Ed
+Let's see
+what means
+each member:
+.Bl -tag
+.It Vd char *buf
+Pointer to
+the buffer
+where response
+is stored.
+Presented
+only for consistence,
+doesn't mean anything
+for the library.
+.It Vd const char *version
+Pointer to
+the HTTP version number
+.It Vd enum LibHTTPC_Status status
+Response code
+.It Vd const char *phrase
+Explanation
+of response code
+.It Vd struct LibHTTPC_Header *headers
+Array of headers
+.It Vd const char *body
+Pointer to
+the entity
+.It Vd size_t header_count
+Length of
+.Ql header_count
+array
+.
+.Pp
+.Ql LibHTTPC_dumpResponse
+function combines
+contents of
+.Ql response
+in the buffer.
+.
+.Pp
+.Ql LibHTTPC_writeResponse
+function writes
+.Ql response
+to the
+.Ql sockfd .
+.
+.Pp
+Both functions can
+autocomplete responses.
+If
+.Ql version
+is
+.Ql NULL ,
+then it will
+be set to
+.Ql "HTTP/1.1" .
+If
+.Ql status
+is 0,
+then it will
+be set to
+200.
+If
+.Ql phrase
+is
+.Ql NULL ,
+then it will
+be set to
+.Ql LibHTTPC_dumpStatus(status) .
+.
+.Sh SEE ALSO
+.Xr libhttpc 3 ,
+.Xr libhttpc_header ,
+.Xr libhttpc_status
+.
+.Sh AUTHORS
+.An Nakidai Perumenei Aq Mt nakidai@disroot.org
+.
+.Sh CAVEATS
+.Ql LibHTTPC_dumpResponse
+and
+.Ql LibHTTPC_writeResponse
+may edit fields of
+.Ql response
+that are set to
+0

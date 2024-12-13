@@ -1,0 +1,130 @@
+.Dd December 13, 2024
+.Dt LIBHTTPC_STATUS 3
+.Os
+.
+.Nm LibHTTPC_Status
+.Nd HTTP status
+.
+.Sh SYNOPSIS
+.In libhttpc/libhttpc.h
+.Ft "const char *"
+.Fn LibHTTPC_dumpStatus "enum LibHTTPC_Status status"
+.
+.Sh DESCRIPTION
+HTTP/1.1
+comes with
+some statuses.
+.Xr libhttpc 3
+provides
+QoL function
+for getting
+usually used
+status strings
+by code.
+.
+.Sh STATUSES
+.Ss 1xx: Informational
+.Bl -tag
+.It Dv LibHTTPC_Status_CONTINUE = 100
+Continue
+.It Dv LibHTTPC_Status_SWITCHING_PROTOCOLS = 101
+Switching protocols
+.El
+.
+.Ss 2xx: Success
+.Bl -tag
+.It Dv LibHTTPC_Status_OK = 200
+OK
+.It Dv LibHTTPC_Status_CREATED = 201
+Created
+.It Dv LibHTTPC_Status_ACCEPTED = 202
+Accepted
+.It Dv LibHTTPC_Status_NONAUTHORITATIVE_INFO = 203
+Non-Authoritative Information
+.It Dv LibHTTPC_Status_NO_CONTENT = 204
+No Content
+.It Dv LibHTTPC_Status_RESET_CONTENT = 205
+Reset Content
+.It Dv LibHTTPC_Status_PARTIAL_CONTENT = 206
+Partial Content
+.El
+.
+.Ss 3xx: Redirection
+.Bl -tag
+.It Dv LibHTTPC_Status_MULTIPLE_CHOICES = 300
+Multiple Choices
+.It Dv LibHTTPC_Status_MOVED_PERMANENTLY = 301
+Moved Permanently
+.It Dv LibHTTPC_Status_FOUND = 302
+Found
+.It Dv LibHTTPC_Status_SEE_OTHER = 303
+See Other
+.It Dv LibHTTPC_Status_NOT_MODIFIED = 304
+Not Modified
+.It Dv LibHTTPC_Status_USE_PROXY = 305
+Use Proxy
+.It Dv LibHTTPC_Status_TEMPORARY_REDIRECT = 307
+Temporary Redirect
+.El
+.
+.Ss 4xx: Client Error
+.Bl -tag
+.It Dv LibHTTPC_Status_BAD_REQUEST = 400
+Bad Request
+.It Dv LibHTTPC_Status_UNAUTHORIZED  401
+Unauthorized
+.It Dv LibHTTPC_Status_PAYMENT_REQUIRED  402
+Payment Required
+.It Dv LibHTTPC_Status_FORBIDDEN = 403
+Forbidden
+.It Dv LibHTTPC_Status_NOT_FOUND = 404
+Not Found
+.It Dv LibHTTPC_Status_METHOD_NOT_ALLOWED = 405
+Method Not Allowed
+.It Dv LibHTTPC_Status_NOT_ACCEPTABLE = 406
+Not Acceptable
+.It Dv LibHTTPC_Status_PROXY_AUTH_REQUIRED = 407
+Proxy Authentication Required
+.It Dv LibHTTPC_Status_REQUEST_TIMEOUT = 408
+Request Timeout
+.It Dv LibHTTPC_Status_CONFLICT = 409
+Conflict
+.It Dv LibHTTPC_Status_GONE = 410
+Gone
+.It Dv LibHTTPC_Status_LENGTH_REQUIRED = 411
+Length Required
+.It Dv LibHTTPC_Status_PRECONDITION_FAILED = 412
+Precondition Failed
+.It Dv LibHTTPC_Status_ENTITY_TOO_LARGE = 413
+Entity Too Large
+.It Dv LibHTTPC_Status_URI_TOO_LONG = 414
+Request-URI Too Long
+.It Dv LibHTTPC_Status_UNSUPPORTED_MEDIA_TYPE = 415
+Unsupported Media Type
+.It Dv LibHTTPC_Status_RANGE_NOT_SATISFIABLE = 416
+Requested Range Not Satisfiable
+.It Dv LibHTTPC_Status_EXPECTATION_FAILED = 417
+Expectation Failed
+.El
+.
+.Ss 5xx: Server Error
+.Bl -tag
+.It Dv LibHTTPC_Status_INTERNAL_SERVER_ERROR = 500
+Internal Server Error
+.It Dv LibHTTPC_Status_NOT_IMPLEMENTED = 501
+Not Implemented
+.It Dv LibHTTPC_Status_BAD_GATEWAY = 502
+Bad Gateway
+.It Dv LibHTTPC_Status_SERVICE_UNAVAILABLE = 503
+Service Unavailable
+.It Dv LibHTTPC_Status_GATEWAY_TIMEOUT = 504
+Gateway Timeout
+.It Dv LibHTTPC_Status_HTTP_VER_NOT_SUPPORTED = 505
+HTTP Version Not Supported
+.El
+.
+.Sh SEE ALSO
+.Xr libhttpc 3
+.
+.Sh AUTHORS
+.An Nakidai Perumenei Aq Mt nakidai@disroot.org

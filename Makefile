@@ -27,10 +27,11 @@ libhttpc.a:
 	ar rcs $@ $^
 
 install: all
-	install -d $(DESTDIR)/lib ${DESTDIR}/include/libhttpc
+	install -d $(DESTDIR)/lib ${DESTDIR}/include/libhttpc ${DESTDIR}/share/man/man3
 	install -m644 libhttpc.a $(DESTDIR)/lib
 	install -m755 libhttpc.so $(DESTDIR)/lib
 	install -m644 include/{config,libhttpc}.h $(DESTDIR)/include/libhttpc
+	install -m644 man/*.3 ${DESTDIR}/share/man/man3
 
 uninstall:
 	$(RM) $(DESTDIR)/lib/libhttpc.{a,so}

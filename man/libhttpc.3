@@ -1,0 +1,57 @@
+.Dd December 13, 2024
+.Dt LIBHTTPC 3
+.Os
+.
+.Sh NAME
+.Nm libhttpc
+.Nd HTTP QoL library
+.Pp
+and also
+.Pp
+.Nm LibHTTPC
+.Nd
+.Nm
+library initializer
+.
+.Sh SYNOPSIS
+.In libhttpc/libhttpc.h
+.Ft "void"
+.Fo LibHTTPC
+.Fa "LibHTTPC_Malloc *malloc"
+.Fa "LibHTTPC_Realloc *realloc"
+.Fa "LibHTTPC_Free *free"
+.Fc
+.
+.Sh DESCRIPTION
+.Nm
+makes it easier
+to create
+HTTP servers.
+It provides
+some QoL functions
+that you
+would write yourself
+without this library.
+.
+.Ss Configuration
+If you
+want to use
+buffer autoallocating
+or
+.Xr libhttpc_request_ 3 ,
+then you need
+to call
+.Fn LibHTTPC
+at first.
+.Xr 
+.
+.Sh SEE ALSO
+.Xr libhttpc-alloc 3 ,
+.Xr libhttpc_header 3 ,
+.Xr libhttpc_method 3 ,
+.Xr libhttpc_request 3 ,
+.Xr libhttpc_response 3 ,
+.Xr libhttpc_status 3
+.
+.Sh AUTHORS
+.An Nakidai Perumenei Aq Mt nakidai@disroot.org

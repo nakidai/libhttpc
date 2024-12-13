@@ -1,0 +1,34 @@
+.Dd December 13, 2024
+.Dt LIBHTTPC-ALLOC 3
+.Os
+.
+.Sh NAME
+.Nm LibHTTPC_Malloc ,
+.Nm LibHTTPC_Realloc ,
+.Nm LibHTTPC_Free
+.Nd types for defining
+.Xr malloc 3
+functions
+.
+.Sh SYNOPSIS
+.Vt typedef void *LibHTTPC_Malloc(size_t);
+.Vt typedef void *LibHTTPC_Realloc(void *, size_t);
+.Vt typedef void LibHTTPC_Free(size_t);
+.Vt extern LibHTTPC_Malloc *LibHTTPC_malloc;
+.Vt extern LibHTTPC_Realloc *LibHTTPC_realloc;
+.Vt extern LibHTTPC_Free *LibHTTPC_free;
+.
+.Sh DESCRIPTION
+These are variables
+that are used
+for setting own
+malloc implementation.
+Set them
+using
+.Ql LibHTTPC
+.
+.Sh SEE ALSO
+.Xr libhttpc 3
+.
+.Sh AUTHORS
+.An Nakidai Perumenei Aq Mt nakidai@disroot.org

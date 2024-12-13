@@ -1,0 +1,154 @@
+.Dd December 13, 2024
+.Dt LIBHTTPC_REQUEST 3
+.Os
+.
+.Sh NAME
+.Nm LibHTTPC_Request
+.Nd way to store HTTP requests
+.
+.Sh SYNOPSIS
+.In libhttpc/libhttpc.h
+.Ft "struct LibHTTPC_Request *"
+.Fo LibHTTPC_loadRequest
+.Fa "struct LibHTTPC_Request *request_buf"
+.Fa "char *buf"
+.Fc
+.Ft int
+.Fo LibHTTPC_Request_
+.Fa "struct LibHTTPC_Request *request"
+.Fc
+.
+.Sh DESCRIPTION
+.Xr libhttpc 3
+stores requests
+as follows:
+.Bd -literal -offset indent
+struct LibHTTPC_Request
+{
+    char                   *buf;
+    char                   *method;
+    char                   *uri;
+    char                   *version;
+    struct LibHTTPC_Header *headers;
+    char                   *body;
+    size_t                  header_count;
+    int                     selfalloc;
+    int                     header_selfalloc;
+};
+.Ed
+Let's see
+what means
+each member:
+.Bl -tag
+.It Vd char *buf
+Pointer to
+the buffer
+where request
+is stored
+.It Vd char *method
+Pointer to
+the method.
+It should be equal to
+.Ql buf
+.It Vd char *uri
+Pointer to
+the
+.Xr uri 7
+.It Vd char *version
+Pointer to
+the HTTP version number
+.It struct LibHTTPC_Header *headers
+Array of headers
+.It char *body
+Pointer to
+the entity
+.It size_t header_count
+Length of
+.Ql headers
+array
+.It int header_selfalloc
+Set by the
+.Ql LibHTTPC_loadRequest
+function if
+.Ql NULL
+was passed to
+request_buf argument.
+Used by
+.Ql LibHTTPC_Request_ .
+.It int selfalloc
+Set by the
+.Ql LibHTTPC_loadRequest
+function if
+.Ql headers
+array was
+allocated
+by the function
+itself.
+Used by
+.Ql LibHTTPC_Request_ .
+.El
+.
+.Pp
+.Ql LibHTTPC_loadRequest
+function parses
+.Ql buf
+and fills a
+.Ql struct LibHTTPC_Request .
+If
+.Ql request_buf
+argument
+is
+.Ql NULL ,
+then functon will
+allocate buffer
+itself.
+.
+.Pp
+.Ql LibHTTPC_Request_
+function
+is a destructor.
+It frees array
+if header_selfalloc is set,
+and then frees structure
+if selfalloc is set.
+.
+.Sh ERRORS
+If
+.Ql LibHTTPC_loadRequest
+returned
+.Ql NULL ,
+you should check
+.Ql errno .
+If
+.Ql errno
+is 0,
+then most likely
+you forgot to call
+.Ql LibHTTPC
+function.
+.
+.Pp
+If
+.Ql LibHTTPC_Request_
+returned -1,
+you should check
+.Ql errno .
+.
+.Sh SEE ALSO
+.Xr libhttpc 3 ,
+.Xr libhttpc-alloc 3 ,
+.Xr libhttpc_header 3
+.
+.Sh AUTHORS
+.An Nakidai Perumenei Aq Mt nakidai@disroot.org
+.
+.Sh CAVEATS
+.Ql LibHTTPC_loadRequest
+function will
+destroy the buffer
+while working.
+It sets
+0 char
+on the end
+of every string in
+.Ql struct LibHTTPC_Request .

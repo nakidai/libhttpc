@@ -1,0 +1,59 @@
+.Dd December 13, 2024
+.Dt LIBHTTPC_METHOD 3
+.Os
+.
+.Sh NAME
+.Nm LibHTTPC_Method
+HTTP method
+.
+.Sh SYNOPSIS
+.In libhttpc/libhttpc.h
+.Ft "const char *"
+.Fn LibHTTPC_dumpMethod "enum LibHTTPC_Method method"
+.Ft "enum LibHTTPC_Method"
+.Fn LibHTTPC_loadMethod "const char *method"
+.
+.Sh DESCRIPTION
+HTTP/1.1
+comes with
+some methods.
+.Xr libhttpc 3
+provides
+QOL functions
+for converting them
+between
+user-readable strings
+and machine-readable enum.
+.Ss Methods
+These are methods
+that are supported
+by
+.Xr libhttpc 3 :
+.Bl -tag
+.It Dv LibHTTPC_Method_OPTIONS
+OPTIONS
+.It Dv LibHTTPC_Method_GET
+GET
+.It Dv LibHTTPC_Method_HEAD
+HEAD
+.It Dv LibHTTPC_Method_POST
+POST
+.It Dv LibHTTPC_Method_PUT
+PUT
+.It Dv LibHTTPC_Method_DELETE
+DELETE
+.It Dv LibHTTPC_Method_TRACE
+TRACE
+.It Dv LibHTTPC_Method_CONNECT
+CONNECT
+.El
+Also,
+there's
+.Dv LibHTTPC_Method_EXTENSION_METHOD
+for user-defined methods.
+.
+.Sh SEE ALSO
+.Xr libhttpc 3
+.
+.Sh AUTHORS
+.An Nakidai Perumenei Aq Mt nakidai@disroot.org

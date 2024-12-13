@@ -1,0 +1,173 @@
+.Dd December 13, 2024
+.Dt LIBHTTPC_HEADER 3
+.Os
+.
+.Sh NAME
+.Nm LibHTTPC_Header
+.Nd HTTP header
+.
+.Sh SYNOPSIS
+.In libhttpc/libhttpc.h
+.Ft "const char *"
+.Fn LibHTTPC_dumpHeader "enum LibHTTPC_HeaderType header"
+.Ft "enum LibHTTPC_HeaderType"
+.Fn LibHTTPC_loadHeader "const char *header"
+.
+.Sh DESCRIPTION
+HTTP/1.1
+comes with
+some headers.
+.Xr libhttpc 3
+provides
+QoL functions
+for converting them
+between
+user-readable strings
+and machine-readable enum.
+.
+.Sh HEADERS
+Headers are declared
+as follows:
+.Bd -literal -offset indent
+struct LibHTTPC_Header
+{
+    const char *name;
+    const char *value;
+};
+.Ed
+.
+.Sh HEADER TYPE
+In addition
+to the structure,
+.Xr libhttpc 3
+provides
+a list
+of HTTP/1.1 headers
+as enum.
+.
+.Ss General headers
+.Bl -tag
+.It Dv LibHTTPC_Header_CACHE_CONTROL
+Cache-Control
+.It Dv LibHTTPC_Header_CONNECTION
+Connection
+.It Dv LibHTTPC_Header_DATE
+Date
+.It Dv LibHTTPC_Header_PRAGMA
+Pragma
+.It Dv LibHTTPC_Header_TRAILER
+Trailer
+.It Dv LibHTTPC_Header_TRANSFER_ENCODING
+Transfer-Encoding
+.It Dv LibHTTPC_Header_UPGRADE
+Upgrade
+.It Dv LibHTTPC_Header_VIA
+Via
+.It Dv LibHTTPC_Header_WARNING
+Warning
+.El
+.
+.Ss Request headers
+.Bl -tag
+.It Dv LibHTTPC_Header_ACCEPT
+Accept
+.It Dv LibHTTPC_Header_ACCEPT_CHARSET
+Accept-Charset
+.It Dv LibHTTPC_Header_ACCEPT_ENCODING
+Accept-Encoding
+.It Dv LibHTTPC_Header_ACCEPT_LANGUAGE
+Accept-Language
+.It Dv LibHTTPC_Header_AUTHORIZATION
+Authorization
+.It Dv LibHTTPC_Header_EXPECT
+Expect
+.It Dv LibHTTPC_Header_FROM
+From
+.It Dv LibHTTPC_Header_HOST
+Host
+.It Dv LibHTTPC_Header_IF_MATCH
+If-Match
+.It Dv LibHTTPC_Header_IF_MODIFIED_SINCE
+If-Modified-Since
+.It Dv LibHTTPC_Header_IF_NONE_MATCH
+If-None-Match
+.It Dv LibHTTPC_Header_IF_RANGE
+If-Range
+.It Dv LibHTTPC_Header_IF_UNMODIFIED_SINCE
+If-Unmodified-Since
+.It Dv LibHTTPC_Header_MAX_FORWARDS
+Max-Forwards
+.It Dv LibHTTPC_Header_PROXY_AUTHORIZATION
+Proxy-Authorization
+.It Dv LibHTTPC_Header_RANGE
+Range
+.It Dv LibHTTPC_Header_REFERER
+Referer
+.It Dv LibHTTPC_Header_TE
+TE
+.It Dv LibHTTPC_Header_USER_AGENT
+User-Agent
+.El
+
+.Ss Response headers
+.Bl -tag
+.It Dv LibHTTPC_Header_ACCEPT_RANGES
+Accept-Ranges
+.It Dv LibHTTPC_Header_AGE
+Age
+.It Dv LibHTTPC_Header_ETAG
+ETag
+.It Dv LibHTTPC_Header_LOCATION
+Location
+.It Dv LibHTTPC_Header_PROXY_AUTHENTICATE
+Proxy-Authorization
+.It Dv LibHTTPC_Header_RETRY_AFTER
+Retry-After
+.It Dv ibHTTPC_Header_SERVER
+Server
+.It Dv ibHTTPC_Header_VARY
+Vary
+.It Dv ibHTTPC_Header_WWW_AUTHENTICATE
+WWW-Authenticate
+.El
+.
+.Ss Entity headers
+.Bl -tag
+.It Dv LibHTTPC_Header_ALLOW
+Allow
+.It Dv LibHTTPC_Header_CONTENT_ENCODING
+Content-Encoding
+.It Dv LibHTTPC_Header_CONTENT_LANGUAGE
+Content-Language
+.It Dv LibHTTPC_Header_CONTENT_LENGTH
+Content-Length
+.It Dv LibHTTPC_Header_CONTENT_LOCATION
+Content-Location
+.It Dv LibHTTPC_Header_CONTENT_MD5
+Content-MD5
+.It Dv LibHTTPC_Header_CONTENT_RANGE
+Content-Range
+.It Dv LibHTTPC_Header_CONTENT_TYPE
+Content-Type
+.It Dv LibHTTPC_Header_EXPIRES
+Expires
+.It Dv LibHTTPC_Header_LAST_MODIFIED
+Last-Modified
+.El
+
+.Ss Other headers
+Also,
+there's
+a special
+.Dv LibHTTPC_Header_EXTENSION_HEADER
+header type
+that means
+user-defined
+header
+(as of HTTP/1.1).
+.
+.Sh SEE ALSO
+.Xr libhttpc 3
+.
+.Sh AUTHORS
+.An Nakidai Perumenei Aq Mt nakidai@disroot.org
