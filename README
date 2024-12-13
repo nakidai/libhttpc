@@ -11,7 +11,7 @@ DESCRIPTION
      include/libhttpc.h file or libhttpc(3)
 
 EXAMPLES
-     As an example, I can tell you the way how personally I use this library:
+     As an example, I can tell you the way how I personally use this library:
 
      o	 Receive request from the user
 

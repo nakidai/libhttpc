@@ -26,7 +26,7 @@ libhttpc.so:
 libhttpc.a:
 	ar rcs $@ $^
 
-README:
+README: README.7
 	mandoc -T ascii $@.7 | col -b > $@
 
 install: all
