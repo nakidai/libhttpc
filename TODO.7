@@ -19,17 +19,6 @@ from
 .Xr socket 2
 directly.
 .It
-Add bound-checking for
-.Fn LibHTTPC_loadRequest .
-This just needs
-to add a
-.Fa buf_len
-parameter
-and check
-if function
-is righter than
-.Ql buf + buf_len .
-.It
 Make
 .Fn LibHTTPC_dumpResponse
 accept

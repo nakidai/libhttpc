@@ -9,6 +9,7 @@ struct LibHTTPC_Request *LibHTTPC_loadRequest(struct LibHTTPC_Request *request_b
 {
     char *next;
     int selfmalloc = 0;
+    char *buf_end = strchr(buf, '\0');
 
     if (!buf)
         return NULL;
@@ -50,6 +51,8 @@ struct LibHTTPC_Request *LibHTTPC_loadRequest(struct LibHTTPC_Request *request_b
     if (!next)
         return NULL;
     *next++ = '\0';
+    if (next > buf_end)
+        return NULL;
 
     for (size_t i = 0; (next = strstr(next, "\r\n")); ++next, ++i)
     {
@@ -57,6 +60,8 @@ struct LibHTTPC_Request *LibHTTPC_loadRequest(struct LibHTTPC_Request *request_b
             return NULL;
         *next = '\0';
         next += 2;
+        if (next > buf_end)
+            return NULL;
 
         if (strstr(next, "\r\n") == next)
             break;
@@ -78,6 +83,8 @@ struct LibHTTPC_Request *LibHTTPC_loadRequest(struct LibHTTPC_Request *request_b
             if (!next)
                 return NULL;
             *next++ = '\0';
+            if (next > buf_end)
+                return NULL;
             request_buf->headers[i].value = next;
         }
     }
