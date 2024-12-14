@@ -1,0 +1,45 @@
+.Dd December 14, 2024
+.Dt TODO 7
+.Os
+.
+.Sh NAME
+.Nm TODO
+.Nd some things
+that I want to do
+with this library
+.
+.Sh DESCRIPTION
+.Bl -bullet
+.It
+Implement
+.Fn LibHTTPC_readRequest .
+It should be able to
+parse requests
+from
+.Xr socket 2
+directly.
+.It
+Add bound-checking for
+.Fn LibHTTPC_loadRequest .
+This just needs
+to add a
+.Fa buf_len
+parameter
+and check
+if function
+is righter than
+.Ql buf + buf_len .
+.It
+Make
+.Fn LibHTTPC_dumpResponse
+accept
+.Dv NULL
+in
+.Fa buf .
+In this way
+function should
+allocate buffer itself.
+.El
+.
+.Sh AUTHORS
+.An Nakidai Perumenei Aq Mt nakidai@disroot.org

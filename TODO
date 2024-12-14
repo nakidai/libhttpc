@@ -1,2 +1,0 @@
-- Implement LibHTTPC_readRequest
-- Add bound-checking for LibHTTPC_loadRequest
