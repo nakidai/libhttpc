@@ -43,11 +43,39 @@ char *LibHTTPC_dumpResponse(struct LibHTTPC_Response *response, char *buf, size_
 
     snprintf(status, sizeof(status), "%d", response->status);
 
+    if (!buf)
+    {
+        if (!LibHTTPC_malloc)
+            return NULL;
+
+        size_t buf_len = (
+            1
+            + strlen(response->version) + 1
+            + strlen(status) + 1
+            + strlen(response->phrase) + 2
+            + 2
+        );
+        for (size_t i = 0; i < response->header_count; ++i)
+            buf_len += (
+                strlen(response->headers[i].name)
+                + 2
+                + strlen(response->headers[i].value)
+                + 2
+            );
+        if (response->body)
+            buf_len += strlen(response->body);
+        buf = malloc(buf_len);
+        if (!buf)
+            return NULL;
+
+        *buf = '\0';
+    }
+
 #define append(X) strncat(buf, (X), buf_len - strlen(buf))
     WRITE();
 #undef append
 
-    return NULL;
+    return buf;
 }
 
 #ifdef LibHTTPC_SOCK
