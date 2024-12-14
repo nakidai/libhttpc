@@ -28,7 +28,7 @@ Let's see
 what means
 each member:
 .Bl -tag
-.It Vd char *buf
+.It char *buf
 Pointer to
 the buffer
 where response
@@ -37,20 +37,20 @@ Presented
 only for consistence,
 doesn't mean anything
 for the library.
-.It Vd const char *version
+.It const char *version
 Pointer to
 the HTTP version number
-.It Vd enum LibHTTPC_Status status
+.It enum LibHTTPC_Status status
 Response code
-.It Vd const char *phrase
+.It const char *phrase
 Explanation
 of response code
-.It Vd struct LibHTTPC_Header *headers
+.It struct LibHTTPC_Header *headers
 Array of headers
-.It Vd const char *body
+.It const char *body
 Pointer to
 the entity
-.It Vd size_t header_count
+.It size_t header_count
 Length of
 .Ql header_count
 array
