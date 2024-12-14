@@ -30,8 +30,12 @@ echo "Configuration:
     Compiler: $CC
     CFLAGS: $CFLAGS
     LDFLAGS: $LDFLAGS
-    DESTDIR: $DESTDIR
-    NOSOCK: ${NOSOCK:-not set}"
+    DESTDIR: $DESTDIR"
+if [ -z "${NOSOCK+x}" ]; then
+    echo "    Will be built with sockets"
+else
+    echo "    Will be built without sockets"
+fi
 
 echo "
 CFLAGS=$CFLAGS
@@ -43,7 +47,7 @@ echo "#ifndef __LIBHTTPC_CONFIG_H__
 #define __LIBHTTPC_CONFIG_H__
 
 " > include/config.h
-if [ -z "$NOSOCK" ]; then
+if [ -z "${NOSOCK+x}" ]; then
     echo "#define LibHTTPC_SOCK" >> include/config.h
 fi
 echo "
