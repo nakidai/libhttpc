@@ -1,4 +1,4 @@
-.Dd December 13, 2024
+.Dd December 14, 2024
 .Dt LIBHTTPC_DUMPRESPONSE 3
 .Os
 .
@@ -23,46 +23,46 @@
 .Fc
 .
 .Sh DESCRIPTION
-.Nm
+.Fn LibHTTPC_dumpResponse
 combines
 contents of
-.Ql response
+.Fa response
 in the
-.Ql buf .
+.Fa buf .
 .
 .Pp
-.Nm LibHTTPC_writeResponse
-function writes
-.Ql response
+.Fn LibHTTPC_writeResponse
+writes the
+.Fa response
 to the
-.Ql sockfd .
+.Fa sockfd .
 .
 .Pp
 Both functions can
 autocomplete responses.
 If
-.Ql version
+.Fa response->version
 is
-.Ql NULL ,
+.Dv NULL ,
 then it will
 be set to
 .Ql "HTTP/1.1" .
 If
-.Ql status
+.Fa response->status
 is 0,
 then it will
 be set to
 200.
 If
-.Ql phrase
+.Fa response->phrase
 is
-.Ql NULL ,
+.Dv NULL ,
 then it will
 be set to
-.Ql LibHTTPC_dumpStatus(status) .
+.Fn LibHTTPC_dumpStatus status .
 .
 .Sh RETURN VALUES
-.Nm LibHTTPC_writeResponse
+.Fn LibHTTPC_writeResponse
 will return 1
 if cannot send
 response.

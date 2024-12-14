@@ -1,4 +1,4 @@
-.Dd December 13, 2024
+.Dd December 14, 2024
 .Dt LIBHTTPC_REQUEST_ 3
 .Os
 .
@@ -17,16 +17,22 @@ destructor
 .Fc
 .
 .Sh DESCRIPTION
-.Nm
+.Fn LibHTTPC_Request_
 is a destructor of
 .Xr libhttpc_request 3 .
-It frees array
-if header_selfalloc is set,
-and then frees structure
-if selfalloc is set.
+It frees
+.Fa request->headers
+if
+.Fa request->header_selfalloc
+is set,
+and then frees
+.Fa request
+if
+.Fa request->selfalloc
+is set.
 .
 .Sh RETURN VALUES
-.Nm
+.Fn LibHTTPC_Request_
 returns either
 -1
 if user hadn't set

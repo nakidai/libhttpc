@@ -1,4 +1,4 @@
-.Dd December 13, 2024
+.Dd December 14, 2024
 .Dt LIBHTTPC_LOADREQUEST 3
 .Os
 .
@@ -15,34 +15,34 @@
 .Fc
 .
 .Sh DESCRIPTION
-.Nm
+.Fn LibHTTPC_loadRequest
 parses
 .Ql buf
-and fills a
-.Ql struct LibHTTPC_Request .
+and fills
+.Fa request_buf .
 If
-.Ql request_buf
+.Fa request_buf
 argument
 is
-.Ql NULL ,
+.Dv NULL ,
 then functon will
 allocate buffer
 itself.
 .
 .Sh RETURN VALUES
-.Nm
+.Fn LibHTTPC_loadRequest
 returns pointer to
-.Ql request_buf
+.Fa request_buf
 on success,
 or
-.Ql NULL
+.Dv NULL
 on error.
 .
 .Pp
 If
-.Nm
+.Fn LibHTTPC_loadRequest
 returned
-.Ql NULL ,
+.Dv NULL ,
 it could mean
 either:
 .Bl -bullet
@@ -79,7 +79,7 @@ for more information.
 .An Nakidai Perumenei Aq Mt nakidai@disroot.org
 .
 .Sh CAVEATS
-.Nm
+.Fn LibHTTPC_loadRequest
 function will
 destroy the buffer
 while working.
@@ -87,4 +87,4 @@ It sets
 0 char
 on the end
 of every string in
-.Ql struct LibHTTPC_Request .
+.Fa request_buf .
