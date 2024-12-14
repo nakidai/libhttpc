@@ -264,7 +264,10 @@ struct LibHTTPC_Request *LibHTTPC_loadRequest(struct LibHTTPC_Request *request_b
  *
  *                      if (response.phrase == NULL) then it will be set to LibHTTPC_dumpStatus(response.status)
  * @param[out] buf      Pointer to buffer where to save formatted response
+ *                      
+ *                      if (buf == NULL) then it will alocate buffer itself
  * @param      buf_len  Size of buf
+ * @return Pointer to buffer on success, NULL otherwise
  */
 char *LibHTTPC_dumpResponse(struct LibHTTPC_Response *response, char *buf, size_t buf_len);
 

@@ -1,4 +1,4 @@
-.Dd December 14, 2024
+.Dd December 15, 2024
 .Dt LIBHTTPC_DUMPRESPONSE 3
 .Os
 .
@@ -29,6 +29,14 @@ contents of
 .Fa response
 in the
 .Fa buf .
+If
+.Fa buf
+is equal to
+.Dv NULL ,
+then function will
+allocate buffer
+itself using
+.Xr libhttpc-alloc 3 .
 .
 .Pp
 .Fn LibHTTPC_writeResponse
@@ -62,6 +70,38 @@ be set to
 .Fn LibHTTPC_dumpStatus status .
 .
 .Sh RETURN VALUES
+.Fn LibHTTPC_dumpResponse
+will return pointer
+to the buffer
+on success.
+If function returned
+.Dv NULL ,
+it could mean
+either:
+.Bl -bullet
+.It
+If
+.Xr errno 3
+is 0
+(Success),
+it means that
+user hadn't set
+.Xr libhttpc-alloc 3 .
+.It
+If
+.Xr errno 3
+is not 0,
+it means that
+.Fn LibHTTPC_malloc
+has failed
+to allocate buffer.
+Read
+.Ql ERRORS
+section of
+.Ql malloc 3
+for more information.
+.El
+.
 .Fn LibHTTPC_writeResponse
 will return 1
 if cannot send
