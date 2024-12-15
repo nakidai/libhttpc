@@ -4,6 +4,9 @@
 #include <stddef.h>
 #include <string.h>
 
+#include <sys/socket.h>
+#include <sys/types.h>
+
 
 struct LibHTTPC_Request *LibHTTPC_loadRequest(struct LibHTTPC_Request *request_buf, char *buf)
 {
@@ -92,6 +95,32 @@ struct LibHTTPC_Request *LibHTTPC_loadRequest(struct LibHTTPC_Request *request_b
 
     return request_buf;
 }
+
+#ifdef LibHTTPC_SOCK
+struct LibHTTPC_Request *LibHTTPC_readRequest(
+    int sockfd,
+    struct LibHTTPC_Request *request_buf,
+    char *buf, size_t buf_len
+)
+{
+    if (!buf)
+    {
+        /* TODO: Implement behavior when buf == NULL */
+        return NULL;
+    } else
+    {
+        if (!buf_len)
+            return NULL;
+
+        ssize_t received = recv(sockfd, buf, buf_len, 0);
+        if (received < 0)
+            return NULL;
+        buf[buf_len - 1] = '\0';
+
+        return LibHTTPC_loadRequest(request_buf, buf);
+    }
+}
+#endif
 
 int LibHTTPC_Request_(struct LibHTTPC_Request *request)
 {

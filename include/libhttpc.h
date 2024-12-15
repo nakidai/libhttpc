@@ -280,7 +280,12 @@ int LibHTTPC_Request_(struct LibHTTPC_Request *request);
 
 #ifdef LibHTTPC_SOCK
 /**
- * Not implemented yet
+ * Read request from sockfd
+ * @param      sockfd      From where to read request
+ * @param[out] request_buf Where to save request. Can be NULL, then library will allocate it itself
+ * @param[out] buf         Where to save received data, can't be NULL.
+ * @param      buf_len     Length of buffer, must be greater than 0
+ * @return Pointer to request on success, NULL otherwise
  */
 struct LibHTTPC_Request *LibHTTPC_readRequest(
     int sockfd,

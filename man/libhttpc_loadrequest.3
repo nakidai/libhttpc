@@ -1,9 +1,10 @@
-.Dd December 14, 2024
+.Dd December 15, 2024
 .Dt LIBHTTPC_LOADREQUEST 3
 .Os
 .
 .Sh NAME
-.Nm LibHTTPC_loadRequest
+.Nm LibHTTPC_loadRequest ,
+.Nm LibHTTPC_readRequest
 .Nd parse HTTP request
 .
 .Sh SYNOPSIS
@@ -13,6 +14,13 @@
 .Fa "struct LibHTTPC_Request *request_buf"
 .Fa "char *buf"
 .Fc
+.Ft "struct LibHTTPC_Request *"
+.Fo LibHTTPC_readRequest
+.Fa "int sockfd"
+.Fa "struct LibHTTPC_Request *request_buf"
+.Fa "char *buf"
+.Fa "size_t buf_len"
+.Fc
 .
 .Sh DESCRIPTION
 .Fn LibHTTPC_loadRequest
@@ -20,12 +28,27 @@ parses
 .Fa buf
 and fills
 .Fa request_buf .
+.
+.Pp
+.Fn LibHTTPC_readRequest
+parses
+.Xr libhttpc_request 3
+from
+.Xr socket 2
+directly.
+.Fa buf
+can't be NULL.
+Behavior
+for this should be
+implemented later,
+though.
+.
+.Pp
 If
 .Fa request_buf
-argument
 is
 .Dv NULL ,
-then functon will
+then function will
 allocate buffer
 itself.
 .
@@ -69,6 +92,55 @@ section of
 for more information.
 .El
 .
+.Pp
+If
+.Fn LibHTTPC_readRequest
+returned
+.Dv NULL ,
+it could mean
+either:
+.Bl -bullet
+.It
+If
+.Xr errno 3
+is 0
+(Success),
+then either:
+.Bl -bullet
+.It
+Either
+.Fa buf
+is
+.Dv NULL
+or
+.Fa buf_len
+is 0
+.It
+Read text about
+return values of
+.Fn LibHTTPC_loadRequest
+.El
+.It
+If
+.Xr errno 3
+is not 0,
+it means that either:
+.Bl -bullet
+.It
+.Xr recv 2
+has failed.
+Read
+.Ql ERRORS
+section of
+.Xr recv 2
+for more information.
+.It
+Read text about
+return values of
+.Fn LibHTTPC_loadRequest
+.El
+.El
+.
 .Sh SEE ALSO
 .Xr libhttpc 3 ,
 .Xr libhttpc-alloc 3 ,
@@ -88,3 +160,8 @@ It sets
 on the end
 of every string in
 .Fa request_buf .
+Note that
+.Fn LibHTTPC_readRequest
+uses
+.Fn LibHTTPC_loadRequest
+under the hood.

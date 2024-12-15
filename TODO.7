@@ -11,19 +11,19 @@ with this library
 .Sh DESCRIPTION
 .Bl -bullet
 .It
-Implement
-.Fn LibHTTPC_readRequest .
-It should be able to
-parse requests
-from
-.Xr socket 2
-directly.
-.It
 Implement handler.
 It should be a function
 that calls other ones
 depending on the
 .Xr uri 7 .
+.It
+Implement behavior
+for
+.Xr libhttpc_readrequest 3
+when
+.Fa buf
+is
+.Dv NULL .
 .El
 .
 .Sh AUTHORS
