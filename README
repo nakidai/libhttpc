@@ -21,6 +21,9 @@ EXAMPLES
 
      o	 Send request back using libhttpc_dumpresponse(3)
 
+     Also there's an API written using this library named CPTC:
+     https://github.com/nakidai/cptc.
+
 SEE ALSO
      libhttpc(3)
 
