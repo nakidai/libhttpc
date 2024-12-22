@@ -4,8 +4,10 @@
 #include <stddef.h>
 #include <string.h>
 
+#ifdef LibHTTPC_SOCK
 #include <sys/socket.h>
 #include <sys/types.h>
+#endif
 
 
 struct LibHTTPC_Request *LibHTTPC_loadRequest(struct LibHTTPC_Request *request_buf, char *buf)

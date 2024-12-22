@@ -5,7 +5,9 @@
 #include <stdio.h>
 #include <string.h>
 
+#ifdef LibHTTPC_SOCK
 #include <sys/socket.h>
+#endif
 
 
 #define WRITE()                                             \
